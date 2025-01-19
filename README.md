@@ -32,6 +32,8 @@ pip install -r requirements.txt
 ```ini
 PINECONE_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 OPENAI_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+GROQ_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
 ```
 
 
@@ -58,7 +60,10 @@ open up localhost:
 - Flask
 - GPT
 - Pinecone
-
+- Groq
+- AWS
+- docker
+- github actions
 
 # AWS-CICD-Deployment-with-Github-Actions
 
@@ -130,3 +135,45 @@ open up localhost:
    - OPENAI_API_KEY
 
     
+
+# workflow Codes
+
+```bash
+sudo apt-get update -y
+
+sudo apt-get upgrade -y
+
+curl -fsSL https://get.docker.com -o get-docker.sh
+
+sudo sh get-docker.sh
+
+sudo usermod -aG docker ubuntu
+
+newgrp docker
+```
+
+#configure
+```bash
+mkdir actions-runner && cd actions-runner
+```
+
+#create runner
+```bash
+curl -o actions-runner-linux-x64-2.321.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.321.0/actions-runner-linux-x64-2.321.0.tar.gz
+```
+
+```bash
+echo "ba46ba7ce3a4d7236b16fbe44419fb453bc08f866b24f04d549ec89f1722a29e  actions-runner-linux-x64-2.321.0.tar.gz" | shasum -a 256 -c
+```
+
+```bash
+tar xzf ./actions-runner-linux-x64-2.321.0.tar.gz
+```
+
+```bash
+./config.sh --url https://github.com/RisAhamed	/Medical-chatbot --token BHAOBDMXHY2NXCBSTP5WSS3HRUQUS
+```
+
+```bash
+./run.sh
+```
